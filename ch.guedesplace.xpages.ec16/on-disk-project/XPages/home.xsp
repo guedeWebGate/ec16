@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex"
+	xmlns:xc="http://www.ibm.com/xsp/custom">
+	<xc:cc_ApplicationLayout pageTitle="Einen Titel">
+		<xp:this.facets>
+			<xp:panel xp:key="facetMiddle">
+				<xp:viewPanel rows="30" id="viewPanel1"
+					pageName="/contact.xsp" var="entry">
+					<xp:this.facets>
+						<xp:pager partialRefresh="true"
+							layout="Previous Group Next" xp:key="headerPager" id="pager1">
+						</xp:pager>
+					</xp:this.facets>
+					<xp:this.data>
+						<xp:dominoView
+							databaseName="Development\ec16\cgu_nab.nsf" viewName="People"
+							var="contactViewDS">
+						</xp:dominoView>
+					</xp:this.data>
+					<xp:viewColumn columnName="$126" id="viewColumn6"
+						displayAs="link" openDocAsReadonly="true">
+						<xp:this.pageUrl><![CDATA[#{javascript:"/contact.xsp?action=openDocument&id="+entry.getUniversalID()}]]></xp:this.pageUrl>
+						<xp:viewColumnHeader value="Name"
+							id="viewColumnHeader6">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+					<xp:viewColumn columnName="$Email"
+						id="viewColumn7">
+						<xp:viewColumnHeader value="E-mail"
+							id="viewColumnHeader7">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+					<xp:viewColumn columnName="$19" id="viewColumn8">
+						<xp:viewColumnHeader value="Phone"
+							id="viewColumnHeader8">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+					<xp:viewColumn columnName="CompanyName"
+						id="viewColumn9">
+						<xp:viewColumnHeader value="Company"
+							id="viewColumnHeader9">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+					<xp:viewColumn columnName="$20" id="viewColumn12">
+						<xp:viewColumnHeader value="Address"
+							id="viewColumnHeader12">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+					<xp:viewColumn columnName="JobTitle"
+						id="viewColumn13">
+						<xp:viewColumnHeader value="Job TItle (hidden)"
+							id="viewColumnHeader13">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+					<xp:viewColumn columnName="OfficePhoneNumber"
+						id="viewColumn15">
+						<xp:viewColumnHeader value="Office Phone"
+							id="viewColumnHeader15">
+						</xp:viewColumnHeader>
+					</xp:viewColumn>
+				</xp:viewPanel>
+			</xp:panel>
+		</xp:this.facets>
+	</xc:cc_ApplicationLayout>
+</xp:view>

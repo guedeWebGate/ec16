@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xe="http://www.ibm.com/xsp/coreex">
+
+	<xe:applicationLayout id="applicationLayout1">
+		<xe:this.facets>
+			<xp:callback facetName="facetRight" id="facetRight"
+				xp:key="RightColumn">
+			</xp:callback>
+		</xe:this.facets>
+		<xp:callback facetName="facetMiddle" id="facetMiddle"></xp:callback>
+		<xe:this.configuration>
+			<xe:simpleResponsiveConfiguration invertedNavbar="true"
+				navbarText="#{javascript:compositeData.pageTitle}"
+				pageWidth="fluid">
+			<xe:this.navbarAppLinks>
+				<xe:pageTreeNode page="/home.xsp" title="Kontakte"></xe:pageTreeNode>
+			</xe:this.navbarAppLinks></xe:simpleResponsiveConfiguration>
+		</xe:this.configuration>
+	</xe:applicationLayout>
+</xp:view>

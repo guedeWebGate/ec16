@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+
+	<xc:cc_ApplicationLayout pageTitle="Kontakt">
+		<xp:this.facets>
+			<xp:panel xp:key="facetMiddle">
+				<xp:this.data>
+					<xp:dominoDocument var="contactDocDS"
+						databaseName="Development\ec16\cgu_nab.nsf" formName="Person"
+						ignoreRequestParams="true">
+						<xp:this.action><![CDATA[#{javascript:paramValues.action +""}]]></xp:this.action>
+						<xp:this.documentId><![CDATA[#{javascript:paramValues.id +""}]]></xp:this.documentId>
+					</xp:dominoDocument>
+				</xp:this.data>
+				<xp:panel>
+					<table class="table">
+						<tr>
+							<td width="150px">
+								<xp:label value="Company name:" id="companyName_Label1"
+									for="companyName1">
+								</xp:label>
+							</td>
+							<td>
+								<xp:inputText value="#{contactDocDS.CompanyName}"
+									id="companyName1">
+								</xp:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xp:label value="First name:" id="firstName_Label1"
+									for="firstName1"></xp:label>
+							</td>
+							<td>
+								<xp:inputText value="#{contactDocDS.FirstName}" id="firstName1">
+								</xp:inputText>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<xp:label value="Last name:" id="lastName_Label1" for="lastName1">
+								</xp:label>
+							</td>
+							<td>
+								<xp:inputText value="#{contactDocDS.LastName}" id="lastName1">
+								</xp:inputText>
+							</td>
+						</tr>
+					</table>
+
+				</xp:panel>
+				<xp:button value="Speichern" id="button1">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+
+							<xp:actionGroup>
+								<xp:saveDocument var="contactDocDS"></xp:saveDocument>
+								<xp:changeDocumentMode mode="readOnly"
+									var="contactDocDS"></xp:changeDocumentMode>
+							</xp:actionGroup>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+				<xp:button value="Editieren" id="button2">
+					<xp:eventHandler event="onclick" submit="true"
+						refreshMode="complete">
+						<xp:this.action>
+							<xp:changeDocumentMode mode="edit" var="contactDocDS"></xp:changeDocumentMode>
+						</xp:this.action>
+					</xp:eventHandler>
+				</xp:button>
+			</xp:panel>
+		</xp:this.facets>
+	</xc:cc_ApplicationLayout>
+</xp:view>
