@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom">
+<xp:view xmlns:xp="http://www.ibm.com/xsp/core" xmlns:xc="http://www.ibm.com/xsp/custom"
+	xmlns:xe="http://www.ibm.com/xsp/coreex">
 
+	<xe:restService id="restService1" pathInfo="activity">
+		<xe:this.service>
+			<xe:customRestService serviceBean="activityBean"></xe:customRestService>
+		</xe:this.service>
+	</xe:restService>
 	<xc:cc_ApplicationLayout pageTitle="Kontakt">
 		<xp:this.facets>
 			<xp:panel xp:key="facetMiddle">
@@ -29,7 +35,8 @@
 						<tr>
 							<td>
 								<xp:label value="First name:" id="firstName_Label1"
-									for="firstName1"></xp:label>
+									for="firstName1">
+								</xp:label>
 							</td>
 							<td>
 								<xp:inputText value="#{contactDocDS.FirstName}" id="firstName1">
@@ -57,7 +64,8 @@
 							<xp:actionGroup>
 								<xp:saveDocument var="contactDocDS"></xp:saveDocument>
 								<xp:changeDocumentMode mode="readOnly"
-									var="contactDocDS"></xp:changeDocumentMode>
+									var="contactDocDS">
+								</xp:changeDocumentMode>
 							</xp:actionGroup>
 						</xp:this.action>
 					</xp:eventHandler>
@@ -66,10 +74,74 @@
 					<xp:eventHandler event="onclick" submit="true"
 						refreshMode="complete">
 						<xp:this.action>
-							<xp:changeDocumentMode mode="edit" var="contactDocDS"></xp:changeDocumentMode>
+							<xp:changeDocumentMode mode="edit" var="contactDocDS">
+							</xp:changeDocumentMode>
 						</xp:this.action>
 					</xp:eventHandler>
 				</xp:button>
+				<xp:button value="Neue Aktivität" id="button5">
+					
+				<xp:eventHandler event="onclick" submit="true"
+					refreshMode="complete">
+					<xp:this.action><![CDATA[#{javascript:getComponent("dialog1").show()}]]></xp:this.action>
+				</xp:eventHandler></xp:button>
+				<xe:dialog id="dialog1" title="Aktivität">
+						<xp:panel>
+							<xp:this.data>
+								<xe:objectData var="activity"
+									createObject="#{javascript:activityBean.createActivityWithContactId(contactDocDS.getDocument().getUniversalID());}"
+									ignoreRequestParams="true" scope="view">
+								</xe:objectData>
+							</xp:this.data>
+					<xe:dialogContent id="dialogContent1">
+							<table>
+								<tr>
+									<td>Subject</td>
+									<td>
+										<xp:inputText id="inputText1"
+											value="#{activity.subject}">
+										</xp:inputText></td>
+								</tr>
+								<tr>
+									<td>Body</td>
+									<td>
+										<xp:inputText id="inputText2"
+											value="#{activity.body}">
+										</xp:inputText></td>
+								</tr>
+								<tr>
+									<td>Datum</td>
+									<td>
+										<xp:inputText id="inputText3"
+											value="#{activity.creationDate}">
+											<xp:this.converter>
+												<xp:convertDateTime
+													type="date">
+												</xp:convertDateTime>
+											</xp:this.converter>
+											<xp:dateTimeHelper></xp:dateTimeHelper>
+										</xp:inputText></td>
+								</tr>
+								
+							</table>
+						
+
+					</xe:dialogContent>
+					<xe:dialogButtonBar id="dialogButtonBar1">
+						<xp:button value="Speichern" id="button4">
+							<xp:eventHandler event="onclick"
+								submit="true" refreshMode="complete">
+								<xp:this.action><![CDATA[#{javascript:activityBean.save(activity);
+getComponent("dialog1").hide();}]]></xp:this.action>
+							</xp:eventHandler></xp:button>
+						<xp:button value="Abbrechen" id="button3">
+							<xp:eventHandler event="onclick"
+								submit="true" refreshMode="complete" immediate="true">
+								<xp:this.action><![CDATA[#{javascript:getComponent("dialog1").hide();}]]></xp:this.action>
+							</xp:eventHandler></xp:button>
+					</xe:dialogButtonBar>
+					</xp:panel>
+				</xe:dialog>
 			</xp:panel>
 		</xp:this.facets>
 	</xc:cc_ApplicationLayout>

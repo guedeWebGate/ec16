@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><note class="form" maintenanceversion="1.5" replicaid="C1257F9200413DFD" version="9.0" xmlns="http://www.lotus.com/dxl">
+<noteinfo noteid="18e" sequence="3" unid="2D0076BAE07DAA8CC1257F9300503F07">
+<created><datetime dst="true">20160412T163630,15+02</datetime></created>
+<modified><datetime dst="true">20160412T163630,34+02</datetime></modified>
+<revised><datetime dst="true">20160412T163630,33+02</datetime></revised>
+<lastaccessed><datetime dst="true">20160412T163630,34+02</datetime></lastaccessed>
+<addedtofile><datetime dst="true">20160412T163630,16+02</datetime></addedtofile></noteinfo>
+<updatedby><name>CN=Christian Guedemann/O=WGC/C=CH</name></updatedby>
+<wassignedby><name>CN=Christian Guedemann/O=WGC/C=CH</name></wassignedby>
+<item name="$Flags"><text>34567Cg~[</text></item>
+<item name="$TITLE"><text>de/entwicklercamp/e16/storage/ActivityStorageService.java</text></item>
+<item name="$DesignerVersion"><text>8.5.3</text></item>
+
+
+<item name="$FileNames" sign="true"><text>de/entwicklercamp/e16/storage/ActivityStorageService.java</text></item></note>
